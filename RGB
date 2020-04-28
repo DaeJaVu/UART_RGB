@@ -100,28 +100,34 @@ int main(void) {
     while (1) //let interrupt handler do the UART echo function
     {
 			
-			switch(x){
-				case 'R':
+			switch(x){ // depending on the user input, the LED will either be on/OFF
+				case 'R': // RED LED ON
 					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1);
+					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
+					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
 					break;
 				
-				case 'r':
+				case 'r': // RED LED OFF
 					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0);
 					break;
 				
-				case 'B':
+				case 'B': // BLUE LED ON
+					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0);
 					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
+					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
 					break;
 				
-				case 'b':
+				case 'b': // BLUE LED OFF
 					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
 					break;
 				
-				case 'G':
+				case 'G': // GREEN LED ON
+					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0);
+					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
 					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
 					break;
 				
-				case 'g':
+				case 'g': // GREEN LED OFF
 					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
 					break;
 			}				
