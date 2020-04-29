@@ -35,36 +35,50 @@ void UARTIntHandler(void)
 				case 'R':
             for(int i=0; i< sizeof(R_on); i++){
                     UARTCharPut(UART0_BASE, R_on[i]);}
+		    UARTCharPut(UART0_BASE, '\r');   
+		    UARTCharPut(UART0_BASE, '\n');
             break;
 				
 				case 'r':
             for(int i=0; i< sizeof(R_off); i++){
                     UARTCharPut(UART0_BASE, R_off[i]);}
+		    UARTCharPut(UART0_BASE, '\r');   
+		    UARTCharPut(UART0_BASE, '\n');
             break;
 				
 				case 'B':
             for(int i=0; i< sizeof(B_on); i++){
                     UARTCharPut(UART0_BASE, B_on[i]);}
+		    UARTCharPut(UART0_BASE, '\r');   
+		    UARTCharPut(UART0_BASE, '\n');
             break;
 				
 				case 'b':
             for(int i=0; i< sizeof(B_off); i++){
                     UARTCharPut(UART0_BASE, B_off[i]);}
+		    UARTCharPut(UART0_BASE, '\r');   
+		    UARTCharPut(UART0_BASE, '\n');
             break;
 				
 				case 'G':
             for(int i=0; i< sizeof(G_on); i++){
               UARTCharPut(UART0_BASE, G_on[i]);}
+		    UARTCharPut(UART0_BASE, '\r');   
+		    UARTCharPut(UART0_BASE, '\n');
             break;
 				
 				case 'g':
             for(int i=0; i< sizeof(G_off); i++){
               UARTCharPut(UART0_BASE, G_off[i]);}
+		    UARTCharPut(UART0_BASE, '\r');   
+		    UARTCharPut(UART0_BASE, '\n');
             break;
 								
 				default:
             for(int i=0; i< sizeof(error_msg); i++){
 							UARTCharPut(UART0_BASE, error_msg[i]);}
+						    UARTCharPut(UART0_BASE, '\r');   
+		    UARTCharPut(UART0_BASE, '\n');
 						break;
 			}
 }
@@ -95,6 +109,8 @@ int main(void) {
 		{
 			UARTCharPut(UART0_BASE, z[i]);
     }
+			    UARTCharPut(UART0_BASE, '\r');   
+		    UARTCharPut(UART0_BASE, '\n');
 	
 		
     while (1) //let interrupt handler do the UART echo function
