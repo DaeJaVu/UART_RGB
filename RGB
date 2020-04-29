@@ -109,8 +109,10 @@ int main(void) {
 	{
 		UARTCharPut(UART0_BASE, z[i]);
     	}
+    UARTCharPut(UART0_BASE, '\r');   
+    UARTCharPut(UART0_BASE, '\n');	
 	
-		
+	
     while (1) //let interrupt handler do the UART echo function
     {
 			
