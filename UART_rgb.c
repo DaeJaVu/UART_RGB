@@ -28,7 +28,7 @@ void UARTIntHandler(void)
 
 		x= UARTCharGet(UART0_BASE);
 		SysCtlDelay(800);
-    UARTCharPut(UART0_BASE, x);
+    		UARTCharPut(UART0_BASE, x);
 		SysCtlDelay(800);
 	
 		switch(x){
