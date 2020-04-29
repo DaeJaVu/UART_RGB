@@ -62,29 +62,29 @@ void UARTIntHandler(void)
 				
 				case 'G':
             for(int i=0; i< sizeof(G_on); i++){
-              UARTCharPut(UART0_BASE, G_on[i]);}
+              	    UARTCharPut(UART0_BASE, G_on[i]);}
 		    UARTCharPut(UART0_BASE, '\r');   
 		    UARTCharPut(UART0_BASE, '\n');
             break;
 				
 				case 'g':
             for(int i=0; i< sizeof(G_off); i++){
-              UARTCharPut(UART0_BASE, G_off[i]);}
+              	    UARTCharPut(UART0_BASE, G_off[i]);}
 		    UARTCharPut(UART0_BASE, '\r');   
 		    UARTCharPut(UART0_BASE, '\n');
             break;
 								
 				default:
             for(int i=0; i< sizeof(error_msg); i++){
-							UARTCharPut(UART0_BASE, error_msg[i]);}
-						    UARTCharPut(UART0_BASE, '\r');   
+		    UARTCharPut(UART0_BASE, error_msg[i]);}
+		    UARTCharPut(UART0_BASE, '\r');   
 		    UARTCharPut(UART0_BASE, '\n');
-						break;
+	    break;
 			}
 }
 int main(void) {
 	
-		SysCtlClockSet(SYSCTL_SYSDIV_4 | SYSCTL_USE_PLL | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ);
+    SysCtlClockSet(SYSCTL_SYSDIV_4 | SYSCTL_USE_PLL | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ);
 
     SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
@@ -95,11 +95,11 @@ int main(void) {
 
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF); //enable GPIO port for LED
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1); //enable pin for LED PF1
-		GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2); //enable pin for LED PF2
-		GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_3); //enable pin for LED PF3
+    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2); //enable pin for LED PF2
+    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_3); //enable pin for LED PF3
 
     UARTConfigSetExpClk(UART0_BASE, SysCtlClockGet(), 115200,
-        (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
+    (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
 
     IntMasterEnable(); //enable processor interrupts
     IntEnable(INT_UART0); //enable the UART interrupt
@@ -108,9 +108,9 @@ int main(void) {
 		for(int i=0; i< sizeof(z); i++)
 		{
 			UARTCharPut(UART0_BASE, z[i]);
-    }
-			    UARTCharPut(UART0_BASE, '\r');   
-		    UARTCharPut(UART0_BASE, '\n');
+    		}
+	        UARTCharPut(UART0_BASE, '\r');   
+		UARTCharPut(UART0_BASE, '\n');
 	
 		
     while (1) //let interrupt handler do the UART echo function
@@ -142,4 +142,4 @@ int main(void) {
 					break;
 			}				
     }
-	}
+}
