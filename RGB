@@ -24,64 +24,64 @@ void UARTIntHandler(void)
 {
     uint32_t ui32Status;
     ui32Status = UARTIntStatus(UART0_BASE, true); //get interrupt status
-    UARTIntClear(UART0_BASE, ui32Status); 				//clear the asserted interrupts
+    UARTIntClear(UART0_BASE, ui32Status); 	  //clear the asserted interrupts
 
-		x= UARTCharGet(UART0_BASE);
-		SysCtlDelay(800);
+    x= UARTCharGet(UART0_BASE);
+    SysCtlDelay(800);
     UARTCharPut(UART0_BASE, x);
-		SysCtlDelay(800);
+    SysCtlDelay(800);
 	
-		switch(x){
-				case 'R':
-            for(int i=0; i< sizeof(R_on); i++){
-							UARTCharPut(UART0_BASE, R_on[i]);}
-							UARTCharPut(UART0_BASE, '\r');   
-							UARTCharPut(UART0_BASE, '\n');
-            break;
+    switch(x){
+		case 'R':
+			for(int i=0; i< sizeof(R_on); i++){
+				UARTCharPut(UART0_BASE, R_on[i]);}
+				UARTCharPut(UART0_BASE, '\r');   
+				UARTCharPut(UART0_BASE, '\n');
+				break;
 				
-				case 'r':
-            for(int i=0; i< sizeof(R_off); i++){
-							UARTCharPut(UART0_BASE, R_off[i]);}
-							UARTCharPut(UART0_BASE, '\r');   
-							UARTCharPut(UART0_BASE, '\n');
-            break;
+		case 'r':
+            		for(int i=0; i< sizeof(R_off); i++){
+				UARTCharPut(UART0_BASE, R_off[i]);}
+				UARTCharPut(UART0_BASE, '\r');   
+				UARTCharPut(UART0_BASE, '\n');
+            			break;
 				
-				case 'B':
-            for(int i=0; i< sizeof(B_on); i++){
-							UARTCharPut(UART0_BASE, B_on[i]);}
-							UARTCharPut(UART0_BASE, '\r');   
-							UARTCharPut(UART0_BASE, '\n');
-            break;
+		case 'B':
+            		for(int i=0; i< sizeof(B_on); i++){
+				UARTCharPut(UART0_BASE, B_on[i]);}
+				UARTCharPut(UART0_BASE, '\r');   
+				UARTCharPut(UART0_BASE, '\n');
+            			break;
 				
-				case 'b':
-            for(int i=0; i< sizeof(B_off); i++){
-							UARTCharPut(UART0_BASE, B_off[i]);}
-							UARTCharPut(UART0_BASE, '\r');   
-							UARTCharPut(UART0_BASE, '\n');
-            break;
+		case 'b':
+            		for(int i=0; i< sizeof(B_off); i++){
+				UARTCharPut(UART0_BASE, B_off[i]);}
+				UARTCharPut(UART0_BASE, '\r');   
+				UARTCharPut(UART0_BASE, '\n');
+            			break;
 				
-				case 'G':
-            for(int i=0; i< sizeof(G_on); i++){
-							UARTCharPut(UART0_BASE, G_on[i]);}
-	      	    UARTCharPut(UART0_BASE, '\r');   
-							UARTCharPut(UART0_BASE, '\n');
-            break;
+		case 'G':
+            		for(int i=0; i< sizeof(G_on); i++){
+				UARTCharPut(UART0_BASE, G_on[i]);}
+	      	    		UARTCharPut(UART0_BASE, '\r');   
+				UARTCharPut(UART0_BASE, '\n');
+            			break;
 				
-				case 'g':
-            for(int i=0; i< sizeof(G_off); i++){
-							UARTCharPut(UART0_BASE, G_off[i]);}
-	            UARTCharPut(UART0_BASE, '\r');   
-	            UARTCharPut(UART0_BASE, '\n');
-            break;
+		case 'g':
+            		for(int i=0; i< sizeof(G_off); i++){
+				UARTCharPut(UART0_BASE, G_off[i]);}
+	            		UARTCharPut(UART0_BASE, '\r');   
+	            		UARTCharPut(UART0_BASE, '\n');
+            			break;
 								
-				default:
-            for(int i=0; i< sizeof(error_msg); i++){
-							UARTCharPut(UART0_BASE, error_msg[i]);}
-							UARTCharPut(UART0_BASE, '\r');   
-							UARTCharPut(UART0_BASE, '\n');
-					break;
-			}
-		}
+		default:
+            		for(int i=0; i< sizeof(error_msg); i++){
+				UARTCharPut(UART0_BASE, error_msg[i]);}
+				UARTCharPut(UART0_BASE, '\r');   
+				UARTCharPut(UART0_BASE, '\n');
+				break;
+	     }
+}
 int main(void) {
 	
     SysCtlClockSet(SYSCTL_SYSDIV_4 | SYSCTL_USE_PLL | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ);
@@ -109,41 +109,43 @@ int main(void) {
 	{
 		UARTCharPut(UART0_BASE, z[i]);
     	}
-	
+		UARTCharPut(UART0_BASE, '\r');   
+		UARTCharPut(UART0_BASE, '\n');
+		break;
 		
     while (1) //let interrupt handler do the UART echo function
-    {
+    	{
 			
-			switch(x){ // depending on the user input, the LED will either be on/OFF
-				case 'R': // RED LED ON
-					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1);
-					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
-					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
-					break;
+		switch(x){ // depending on the user input, the LED will either be on/OFF
+			case 'R': // RED LED ON
+				GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1);
+				GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
+				GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
+				break;
 				
-				case 'r': // RED LED OFF
-					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0);
-					break;
+			case 'r': // RED LED OFF
+				GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0);
+				break;
 				
-				case 'B': // BLUE LED ON
-					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0);
-					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
-					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
-					break;
+			case 'B': // BLUE LED ON
+				GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0);
+				GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
+				GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
+				break;
 				
-				case 'b': // BLUE LED OFF
-					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
-					break;
+			case 'b': // BLUE LED OFF
+				GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
+				break;
 				
-				case 'G': // GREEN LED ON
-					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0);
-					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
-					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
-					break;
+			case 'G': // GREEN LED ON
+				GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0);
+				GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
+				GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
+				break;
 				
-				case 'g': // GREEN LED OFF
-					GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
-					break;
+			case 'g': // GREEN LED OFF
+				GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0);
+				break;
 			}				
-    }
+        }
 }
